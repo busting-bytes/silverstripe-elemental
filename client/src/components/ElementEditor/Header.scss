@@ -8,7 +8,7 @@
     margin-bottom: 0px;
     padding: 7px;
     border-radius: 5px;
-
+    white-space: nowrap;
 
     &.visibility_LoggedInOnly {
       background-color: #FFCCCB;
@@ -32,7 +32,6 @@
     -webkit-font-smoothing: antialiased;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
 
     &--none {
       font-style: italic;
