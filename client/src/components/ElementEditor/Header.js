@@ -80,9 +80,9 @@ class Header extends Component {
 
   getVisibilityString(element) {
     const visiblity = element.blockSchema.visibility;
-    if (visiblity === "Everyone") return "Content is public";
-    if (visiblity === "LoggedInOnly") return "Content for practitioners only"
-    if (visiblity === "NotLoggedIn") return "Content only visible if not logged in"
+    if (visiblity === 'Everyone') return 'Content is public';
+    if (visiblity === 'LoggedInOnly') return 'Content for practitioners only';
+    return 'Content only visible if not logged in';
   }
 
   toggle() {
@@ -149,7 +149,6 @@ class Header extends Component {
       'element-editor-header__title': true,
       'element-editor-header__title--none': !element.title,
     });
-    const visibility = element.blockSchema.visibility;
     const visibilityToString = this.getVisibilityString(element);
     const expandTitle = i18n._t('ElementHeader.EXPAND', 'Show editable fields');
     const containerClasses = classNames(
@@ -172,8 +171,8 @@ class Header extends Component {
       }
     );
     const visibilityClasses = classNames(
-      'element-editor-visibility', 'visibility_'+element.blockSchema.visibility
-    )
+      'element-editor-visibility', `visibility_${element.blockSchema.visibility}`
+    );
 
     const blockIconId = `element-icon-${element.id}`;
 
