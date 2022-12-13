@@ -15,7 +15,6 @@ import getFormState from 'lib/getFormState';
 import { elementDragSource } from 'lib/dragHelpers';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
-
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -79,6 +78,12 @@ class Header extends Component {
     );
   }
 
+  getVisibilityString(element) {
+    const visiblity = element.blockSchema.visibility;
+    if (visiblity === "Everyone") return "Content is public";
+    if (visiblity === "LoggedInOnly") return "Content for practitioners only"
+    if (visiblity === "NotLoggedIn") return "Content only visible if not logged in"
+  }
 
   toggle() {
     this.setState({
@@ -144,6 +149,8 @@ class Header extends Component {
       'element-editor-header__title': true,
       'element-editor-header__title--none': !element.title,
     });
+    const visibility = element.blockSchema.visibility;
+    const visibilityToString = this.getVisibilityString(element);
     const expandTitle = i18n._t('ElementHeader.EXPAND', 'Show editable fields');
     const containerClasses = classNames(
       'element-editor-header', {
@@ -164,6 +171,10 @@ class Header extends Component {
         'font-icon-down-open-big': expandable && !previewExpanded,
       }
     );
+    const visibilityClasses = classNames(
+      'element-editor-visibility', 'visibility_'+element.blockSchema.visibility
+    )
+
     const blockIconId = `element-icon-${element.id}`;
 
     const content = (
@@ -187,6 +198,7 @@ class Header extends Component {
           <h3 className={titleClasses}>{title}</h3>
         </div>
         {!simple && <div className="element-editor-header__actions">
+          <h6 className={visibilityClasses}>{visibilityToString}</h6>
           <div role="none" onClick={(event) => event.stopPropagation()}>
             <ElementActionsComponent
               element={element}
