@@ -3,6 +3,27 @@
   align-items: center;
   justify-content: space-between;
 
+  .element-editor-visibility {
+    margin-right: 5px;
+    margin-bottom: 0px;
+    padding: 7px;
+    border-radius: 5px;
+    white-space: nowrap;
+
+    &.visibility_LoggedInOnly {
+      background-color: #FFCCCB;
+    }
+
+    &.visibility_Everyone {
+      background-color: #cefad0;
+    }
+
+    &.visibility_NotLoggedIn {
+      background-color: #fffdaf;
+    }
+
+  }
+
   &__title {
     font-size: 15px;
     font-weight: 400;

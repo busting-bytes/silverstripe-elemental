@@ -1,6 +1,9 @@
+.idea
+public
 /node_modules/
 /**/*.js.map
 /**/*.css.map
 /vendor/
 /resources/
 /assets/
+composer.lock
