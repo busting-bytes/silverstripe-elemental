@@ -74,6 +74,14 @@ class Header extends Component {
     );
   }
 
+  getVisibilityString(element) {
+    const visiblity = element.blockSchema.visibility;
+    if (visiblity === 'Everyone') return 'Content is public';
+    if (visiblity === 'LoggedInOnly') return 'Content for practitioners only';
+    return 'Content only visible if not logged in';
+  }
+
+
   toggle() {
     this.setState((prevState) => ({
       tooltipOpen: !prevState.tooltipOpen
@@ -168,11 +176,12 @@ class Header extends Component {
       'element-editor-header__title': true,
       'element-editor-header__title--none': !element.title,
     });
+    const visibilityToString = this.getVisibilityString(element);
     const expandTitle = i18n._t('ElementHeader.EXPAND', 'Show editable fields');
     const containerClasses = classNames(
       'element-editor-header', {
-        'element-editor-header--simple': simple,
-      }
+      'element-editor-header--simple': simple,
+    }
     );
     const iconContainerClasses = classNames(
       'element-editor-header__icon-container',
@@ -188,10 +197,16 @@ class Header extends Component {
         'font-icon-down-open-big': expandable && !previewExpanded,
       }
     );
+
+    const visibilityClasses = classNames(
+      'element-editor-visibility', `visibility_${element.blockSchema.visibility}`
+    );
+
     const blockIconId = `element-icon-${element.id}`;
 
     const content = (
       <div className={containerClasses}>
+        <h6 className={visibilityClasses}>{visibilityToString}</h6>
         <div className="element-editor-header__drag-handle">
           <i className="font-icon-drag-handle" />
         </div>

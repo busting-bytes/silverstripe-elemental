@@ -360,6 +360,7 @@ const Element = (props) => {
 
   const elementClassNames = classNames(
     'element-editor__element',
+    'element-editor__element', `visibility_${element.blockSchema.visibility}`,
     {
       'element-editor__element--broken': type.broken,
       'element-editor__element--expandable': type.inlineEditable && !type.broken,
